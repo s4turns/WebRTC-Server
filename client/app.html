@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Conference</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎥 WebRTC Conference</h1>
+            <div class="room-info" id="roomInfo" style="display:none;">
+                <span id="roomName"></span>
+                <span id="participantCount">0 participants</span>
+            </div>
+        </header>
+
+        <!-- Join Screen -->
+        <div id="joinScreen" class="join-screen">
+            <div class="join-card">
+                <h2>Join or Create a Room</h2>
+
+                <div class="form-group">
+                    <label for="usernameInput">Your Name:</label>
+                    <input type="text" id="usernameInput" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="roomInput">Room Name:</label>
+                    <input type="text" id="roomInput" placeholder="Enter room name" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="ircChannelInput">IRC Channel (optional):</label>
+                    <input type="text" id="ircChannelInput" placeholder="#channel on irc.blcknd.network">
+                    <small>Bridge chat to IRC channel</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordInput">Password (optional):</label>
+                    <input type="password" id="passwordInput" placeholder="Leave empty for public room">
+                    <small>Set password to create protected room</small>
+                </div>
+
+                <button id="joinBtn" class="btn btn-primary">Join Room</button>
+            </div>
+        </div>
+
+        <!-- Main Conference Screen -->
+        <div id="conferenceScreen" class="conference-screen" style="display:none;">
+            <!-- Video Grid -->
+            <div class="video-grid" id="videoGrid">
+                <!-- Local video -->
+                <div class="video-container" id="localContainer">
+                    <video id="localVideo" autoplay muted playsinline></video>
+                    <div class="video-label">You (Local)</div>
+                    <div class="video-controls">
+                        <button id="toggleAudioBtn" class="control-btn" title="Mute/Unmute">
+                            <span class="icon">🎤</span>
+                        </button>
+                        <button id="toggleVideoBtn" class="control-btn" title="Camera On/Off">
+                            <span class="icon">📹</span>
+                        </button>
+                        <button id="shareScreenBtn" class="control-btn" title="Share Screen">
+                            <span class="icon">🖥️</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Sidebar -->
+            <div class="chat-sidebar" id="chatSidebar">
+                <div class="chat-header">
+                    <h3>💬 Chat</h3>
+                    <button id="toggleChatBtn" class="btn-icon">✕</button>
+                </div>
+
+                <div class="chat-messages" id="chatMessages"></div>
+
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Type a message..." />
+                    <button id="sendMessageBtn" class="btn btn-primary">Send</button>
+                </div>
+
+                <div class="irc-status" id="ircStatus"></div>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="bottom-controls">
+                <button id="chatToggleBtn" class="btn btn-secondary">
+                    💬 Chat
+                </button>
+                <button id="leaveRoomBtn" class="btn btn-danger">
+                    Leave Room
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div id="statusBar" class="status-bar">
+            <span id="statusText">Disconnected</span>
+        </div>
+    </div>
+
+    <script src="conference.js"></script>
+</body>
+</html>

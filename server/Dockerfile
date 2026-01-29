@@ -7,10 +7,11 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy server code
-COPY signaling_server.py .
+COPY signaling_server_v2.py .
+COPY irc_bridge.py .
 
 # Expose WebSocket port
 EXPOSE 8765
 
-# Run the signaling server
-CMD ["python", "signaling_server.py"]
+# Run the enhanced signaling server
+CMD ["python", "signaling_server_v2.py"]
