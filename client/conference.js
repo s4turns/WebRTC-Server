@@ -32,7 +32,7 @@ class ConferenceClient {
         this.videoEnabled = true;
         this.chatVisible = false;
 
-        this.init UI();
+        this.initUI();
     }
 
     generateId() {
